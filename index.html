@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ellos y ellas - Belleza y Cuidado Personal</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <div class="logo-icon">
+                    <span>E&E</span>
+                </div>
+                <span class="logo-text">ellos y ellas</span>
+            </div>
+            <div class="loading-spinner"></div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <a href="#" class="logo" data-aos="fade-right">
+                    <div class="logo-icon">
+                        <span>E&E</span>
+                    </div>
+                    <span class="logo-text">ellos y ellas</span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="nav-desktop" data-aos="fade-down" data-aos-delay="100">
+                    <a href="#home" class="nav-link active">Inicio</a>
+                    <div class="nav-dropdown">
+                        <a href="#" class="nav-link">Catálogo <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="#" data-category="facial">
+                                <i class="fas fa-spa"></i>
+                                <span>Cuidado Facial</span>
+                            </a>
+                            <a href="#" data-category="maquillaje">
+                                <i class="fas fa-palette"></i>
+                                <span>Maquillaje</span>
+                            </a>
+                            <a href="#" data-category="corporal">
+                                <i class="fas fa-heart"></i>
+                                <span>Cuidado Corporal</span>
+                            </a>
+                            <a href="#" data-category="cabello">
+                                <i class="fas fa-cut"></i>
+                                <span>Cabello</span>
+                            </a>
+                            <a href="#" data-category="unas">
+                                <i class="fas fa-hand-sparkles"></i>
+                                <span>Uñas</span>
+                            </a>
+                            <a href="#" data-category="herramientas">
+                                <i class="fas fa-tools"></i>
+                                <span>Herramientas</span>
+                            </a>
+                        </div>
+                    </div>
+                    <a href="#about" class="nav-link">Nosotros</a>
+                    <a href="#contact" class="nav-link">Contacto</a>
+                </nav>
+
+                <!-- Header Icons -->
+                <div class="header-icons" data-aos="fade-left" data-aos-delay="200">
+                    <div class="search-container">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Buscar productos..." id="searchInput">
+                            <div class="search-suggestions" id="searchSuggestions"></div>
+                        </div>
+                    </div>
+                    <a href="#" class="icon-btn" title="Mi Cuenta">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <a href="#" class="icon-btn wishlist-btn" title="Lista de Deseos">
+                        <i class="fas fa-heart"></i>
+                        <span class="wishlist-count">0</span>
+                    </a>
+                    <a href="#" class="icon-btn cart-btn" title="Carrito de Compras">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div class="mobile-menu" id="mobileMenu">
+                <div class="mobile-menu-content">
+                    <a href="#home" class="mobile-nav-link">Inicio</a>
+                    <a href="#products" class="mobile-nav-link">Productos</a>
+                    <a href="#about" class="mobile-nav-link">Nosotros</a>
+                    <a href="#contact" class="mobile-nav-link">Contacto</a>
+                    <div class="mobile-search">
+                        <input type="text" placeholder="Buscar productos...">
+                        <button><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-slider">
+            <div class="slide active" data-bg="https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80">
+                <div class="slide-content" data-aos="fade-up" data-aos-duration="1000">
+                    <h1>Descubre la Nueva Colección</h1>
+                    <p>Productos de belleza profesional para ti</p>
+                    <button class="btn-primary" onclick="scrollToSection('products')">
+                        Ver Productos
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="slide" data-bg="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80">
+                <div class="slide-content" data-aos="fade-up" data-aos-duration="1000">
+                    <h1>Cuidado Profesional</h1>
+                    <p>Para manicuristas, estilistas y peluqueros</p>
+                    <button class="btn-primary" onclick="scrollToSection('products')">
+                        Explorar Catálogo
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="slide" data-bg="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80">
+                <div class="slide-content" data-aos="fade-up" data-aos-duration="1000">
+                    <h1>Belleza Natural</h1>
+                    <p>Productos que realzan tu belleza natural</p>
+                    <button class="btn-primary" onclick="scrollToSection('products')">
+                        Explorar
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <button class="hero-nav prev" onclick="changeSlide(-1)">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="hero-nav next" onclick="changeSlide(1)">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        <div class="hero-dots">
+            <span class="dot active" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
+        <div class="scroll-indicator" onclick="scrollToSection('products')">
+            <div class="scroll-arrow">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="featured-products" id="products">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Productos Destacados</h2>
+                <p>Descubre nuestros productos más populares y las últimas novedades</p>
+            </div>
+            
+            <!-- Product Filters -->
+            <div class="product-filters" data-aos="fade-up" data-aos-delay="100">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="facial">Facial</button>
+                <button class="filter-btn" data-filter="maquillaje">Maquillaje</button>
+                <button class="filter-btn" data-filter="corporal">Corporal</button>
+                <button class="filter-btn" data-filter="cabello">Cabello</button>
+                <button class="filter-btn" data-filter="unas">Uñas</button>
+            </div>
+
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be loaded by JavaScript -->
+            </div>
+            <div class="section-footer" data-aos="fade-up">
+                <button class="btn-outline">Ver Todos los Productos</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Info -->
+    <section class="brand-info" id="about">
+        <div class="container">
+            <div class="brand-content">
+                <div class="brand-text" data-aos="fade-right">
+                    <h2>Sobre <span class="gradient-text">ellos y ellas</span></h2>
+                    <p class="lead">Somos una marca comprometida con la belleza y el cuidado personal, especializada en productos de alta calidad para profesionales de la belleza y personas que buscan lo mejor para su cuidado personal.</p>
+                    <p>Nuestra filosofía se basa en ofrecer productos que no solo embellecen, sino que también cuidan y nutren. Trabajamos con los mejores ingredientes y las últimas tecnologías para garantizar resultados excepcionales.</p>
+                    
+                    <div class="features">
+                        <div class="feature" data-aos="zoom-in" data-aos-delay="100">
+                            <div class="feature-icon pink">
+                                <i class="fas fa-sparkles"></i>
+                            </div>
+                            <h3>Calidad Premium</h3>
+                            <p>Productos de la más alta calidad</p>
+                        </div>
+                        <div class="feature" data-aos="zoom-in" data-aos-delay="200">
+                            <div class="feature-icon purple">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h3>Para Profesionales</h3>
+                            <p>Diseñado para expertos</p>
+                        </div>
+                        <div class="feature" data-aos="zoom-in" data-aos-delay="300">
+                            <div class="feature-icon orange">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <h3>Resultados Garantizados</h3>
+                            <p>Satisfacción asegurada</p>
+                        </div>
+                    </div>
+                    
+                    <button class="btn-primary">
+                        Conoce Más Sobre Nosotros
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                <div class="brand-image" data-aos="fade-left">
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Sobre nosotros" class="parallax-image">
+                        <div class="floating-icon top-right">
+                            <i class="fas fa-sparkles"></i>
+                        </div>
+                        <div class="floating-icon bottom-left">
+                            <i class="fas fa-award"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Categories -->
+    <section class="popular-categories">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Categorías Populares</h2>
+                <p>Explora nuestras categorías más populares y encuentra exactamente lo que necesitas</p>
+            </div>
+            <div class="categories-grid">
+                <a href="#" class="category-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="category-image" style="background-image: url('https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+                    <div class="category-overlay">
+                        <h3>Cuidado Facial</h3>
+                        <p>45+ productos</p>
+                        <div class="category-icon">
+                            <i class="fas fa-spa"></i>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="category-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="category-image" style="background-image: url('https://images.unsplash.com/photo-1512496015851-a90fb38ba796?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+                    <div class="category-overlay">
+                        <h3>Maquillaje</h3>
+                        <p>120+ productos</p>
+                        <div class="category-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="category-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="category-image" style="background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+                    <div class="category-overlay">
+                        <h3>Cuidado Corporal</h3>
+                        <p>38+ productos</p>
+                        <div class="category-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="category-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="category-image" style="background-image: url('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+                    <div class="category-overlay">
+                        <h3>Cabello</h3>
+                        <p>67+ productos</p>
+                        <div class="category-icon">
+                            <i class="fas fa-cut"></i>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="category-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="category-image" style="background-image: url('https://images.unsplash.com/photo-1604654894610-df63bc536371?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+                    <div class="category-overlay">
+                        <h3>Uñas</h3>
+                        <p>89+ productos</p>
+                        <div class="category-icon">
+                            <i class="fas fa-hand-sparkles"></i>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="category-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="category-image" style="background-image: url('https://images.unsplash.com/photo-1583394838336-acd977736f90?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+                    <div class="category-overlay">
+                        <h3>Herramientas</h3>
+                        <p>34+ productos</p>
+                        <div class="category-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Lo Que Dicen Nuestros Clientes</h2>
+                <p>Testimonios reales de profesionales y clientes satisfechos</p>
+            </div>
+            <div class="testimonials-slider">
+                <div class="testimonial-track" id="testimonialTrack">
+                    <!-- Testimonials will be loaded by JavaScript -->
+                </div>
+                <button class="slider-nav prev" onclick="moveTestimonials(-1)">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="slider-nav next" onclick="moveTestimonials(1)">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                <div class="testimonial-dots" id="testimonialDots">
+                    <!-- Dots will be generated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shop by Look -->
+    <section class="shop-by-look">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Compra por Look</h2>
+                <p>Looks completos y rutinas diseñadas por nuestros expertos. Añade todos los productos al carrito con un solo clic.</p>
+            </div>
+            <div class="looks-grid">
+                <div class="look-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="look-image" style="background-image: url('https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+                    <div class="look-content">
+                        <h3>Look Natural Diario</h3>
+                        <div class="look-products">
+                            <div class="product-item">
+                                <span>Base Natural</span>
+                                <span>$38.000</span>
+                            </div>
+                            <div class="product-item">
+                                <span>Corrector</span>
+                                <span>$25.000</span>
+                            </div>
+                            <div class="product-item">
+                                <span>Rubor Melocotón</span>
+                                <span>$22.000</span>
+                            </div>
+                            <div class="product-item">
+                                <span>Gloss Transparente</span>
+                                <span>$18.000</span>
+                            </div>
+                        </div>
+                        <div class="look-total">
+                            <span>Total: <strong>$103.000</strong></span>
+                        </div>
+                        <div class="look-actions">
+                            <button class="btn-primary">
+                                <i class="fas fa-shopping-cart"></i>
+                                Añadir Look Completo
+                            </button>
+                            <button class="btn-outline">Ver Detalles</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="look-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="look-image" style="background-image: url('https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+                    <div class="look-content">
+                        <h3>Look Profesional Noche</h3>
+                        <div class="look-products">
+                            <div class="product-item">
+                                <span>Base HD</span>
+                                <span>$45.000</span>
+                            </div>
+                            <div class="product-item">
+                                <span>Paleta Smokey</span>
+                                <span>$68.000</span>
+                            </div>
+                            <div class="product-item">
+                                <span>Delineador Negro</span>
+                                <span>$28.000</span>
+                            </div>
+                            <div class="product-item">
+                                <span>Labial Rojo</span>
+                                <span>$32.000</span>
+                            </div>
+                        </div>
+                        <div class="look-total">
+                            <span>Total: <strong>$173.000</strong></span>
+                        </div>
+                        <div class="look-actions">
+                            <button class="btn-primary">
+                                <i class="fas fa-shopping-cart"></i>
+                                Añadir Look Completo
+                            </button>
+                            <button class="btn-outline">Ver Detalles</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="look-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="look-image" style="background-image: url('https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+                    <div class="look-content">
+                        <h3>Rutina Cuidado Facial</h3>
+                        <div class="look-products">
+                            <div class="product-item">
+                                <span>Limpiador Facial</span>
+                                <span>$35.000</span>
+                            </div>
+                            <div class="product-item">
+                                <span>Tónico Hidratante</span>
+                                <span>$28.000</span>
+                            </div>
+                            <div class="product-item">
+                                <span>Sérum Vitamina C</span>
+                                <span>$55.000</span>
+                            </div>
+                            <div class="product-item">
+                                <span>Crema Hidratante</span>
+                                <span>$42.000</span>
+                            </div>
+                        </div>
+                        <div class="look-total">
+                            <span>Total: <strong>$160.000</strong></span>
+                        </div>
+                        <div class="look-actions">
+                            <button class="btn-primary">
+                                <i class="fas fa-shopping-cart"></i>
+                                Añadir Look Completo
+                            </button>
+                            <button class="btn-outline">Ver Detalles</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instagram Feed -->
+    <section class="instagram-feed">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <div class="instagram-title">
+                    <i class="fab fa-instagram"></i>
+                    <h2>@ellosyellas</h2>
+                </div>
+                <p>Síguenos en Instagram para ver las últimas tendencias, tutoriales y looks inspiradores de nuestra comunidad</p>
+                <button class="btn-outline">
+                    <i class="fab fa-instagram"></i>
+                    Seguir en Instagram
+                </button>
+            </div>
+            <div class="instagram-grid">
+                <a href="#" class="instagram-post" data-aos="zoom-in" data-aos-delay="100" style="background-image: url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80');">
+                    <div class="post-overlay">
+                        <i class="fab fa-instagram"></i>
+                        <div class="post-stats">
+                            <div><i class="fas fa-heart"></i> 245</div>
+                            <div><i class="fas fa-comment"></i> 18</div>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="instagram-post" data-aos="zoom-in" data-aos-delay="200" style="background-image: url('https://images.unsplash.com/photo-1604654894610-df63bc536371?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80');">
+                    <div class="post-overlay">
+                        <i class="fab fa-instagram"></i>
+                        <div class="post-stats">
+                            <div><i class="fas fa-heart"></i> 189</div>
+                            <div><i class="fas fa-comment"></i> 12</div>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="instagram-post" data-aos="zoom-in" data-aos-delay="300" style="background-image: url('https://images.unsplash.com/photo-1512496015851-a90fb38ba796?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80');">
+                    <div class="post-overlay">
+                        <i class="fab fa-instagram"></i>
+                        <div class="post-stats">
+                            <div><i class="fas fa-heart"></i> 367</div>
+                            <div><i class="fas fa-comment"></i> 24</div>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="instagram-post" data-aos="zoom-in" data-aos-delay="400" style="background-image: url('https://images.unsplash.com/photo-1583394838336-acd977736f90?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80');">
+                    <div class="post-overlay">
+                        <i class="fab fa-instagram"></i>
+                        <div class="post-stats">
+                            <div><i class="fas fa-heart"></i> 156</div>
+                            <div><i class="fas fa-comment"></i> 8</div>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="instagram-post" data-aos="zoom-in" data-aos-delay="500" style="background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80');">
+                    <div class="post-overlay">
+                        <i class="fab fa-instagram"></i>
+                        <div class="post-stats">
+                            <div><i class="fas fa-heart"></i> 298</div>
+                            <div><i class="fas fa-comment"></i> 15</div>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="instagram-post" data-aos="zoom-in" data-aos-delay="600" style="background-image: url('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80');">
+                    <div class="post-overlay">
+                        <i class="fab fa-instagram"></i>
+                        <div class="post-stats">
+                            <div><i class="fas fa-heart"></i> 423</div>
+                            <div><i class="fas fa-comment"></i> 31</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="footer-bg"></div>
+        <div class="container">
+            <div class="footer-content">
+                <!-- Brand Info -->
+                <div class="footer-section" data-aos="fade-up" data-aos-delay="100">
+                    <div class="footer-logo">
+                        <div class="logo-icon">
+                            <span>E&E</span>
+                        </div>
+                        <span class="logo-text">ellos y ellas</span>
+                    </div>
+                    <p>Tu marca de confianza en productos de belleza y cuidado personal. Calidad profesional para realzar tu belleza natural.</p>
+                    
+                    <div class="social-section">
+                        <h4>Síguenos</h4>
+                        <div class="social-icons">
+                            <a href="#" class="social-icon" title="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-icon" title="Facebook">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                            <a href="#" class="social-icon" title="YouTube">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="#" class="social-icon" title="Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-icon" title="LinkedIn">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-section" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="#about">Sobre Nosotros</a></li>
+                        <li><a href="#products">Catálogo</a></li>
+                        <li><a href="#contact">Contacto</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Preguntas Frecuentes</a></li>
+                    </ul>
+                </div>
+
+                <!-- Policies -->
+                <div class="footer-section" data-aos="fade-up" data-aos-delay="300">
+                    <h3>Políticas</h3>
+                    <ul>
+                        <li><a href="#">Política de Envíos</a></li>
+                        <li><a href="#">Devoluciones</a></li>
+                        <li><a href="#">Privacidad</a></li>
+                        <li><a href="#">Términos y Condiciones</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="footer-section" data-aos="fade-up" data-aos-delay="400">
+                    <h3>Contacto</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <p>info@ellosyellas.com</p>
+                                <small>ventas@ellosyellas.com</small>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <p>+57 300 123 4567</p>
+                                <small>WhatsApp disponible</small>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <p>Carrera 15 #93-47</p>
+                                <small>Bogotá, Colombia</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="schedule">
+                        <h4>Horarios de Atención</h4>
+                        <div class="schedule-item">
+                            <span>Lunes - Viernes:</span>
+                            <span>8:00 AM - 6:00 PM</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span>Sábados:</span>
+                            <span>9:00 AM - 4:00 PM</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span>Domingos:</span>
+                            <span>Cerrado</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 <span>ellos y ellas</span>. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <div class="whatsapp-float" data-aos="zoom-in" data-aos-delay="1000">
+        <div class="whatsapp-pulse"></div>
+        <button class="whatsapp-btn" onclick="openWhatsApp()" title="Contactar por WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </button>
+        <div class="whatsapp-tooltip">¡Chatea con nosotros!</div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Carrito de Compras</h3>
+            <button class="close-cart" onclick="toggleCart()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be loaded here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total: <strong id="cartTotal">$0</strong></span>
+            </div>
+            <button class="btn-primary cart-checkout">
+                <i class="fas fa-credit-card"></i>
+                Proceder al Pago
+            </button>
+        </div>
+    </div>
+
+    <!-- Cart Overlay -->
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="script.js"></script>
+    
+</body>
+</html>
