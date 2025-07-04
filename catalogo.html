@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo - ellos y ellas - Belleza y Cuidado Personal</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="catalog-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <div class="logo-icon">
+                    <span>E&E</span>
+                </div>
+                <span class="logo-text">ellos y ellas</span>
+            </div>
+            <div class="loading-spinner"></div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <a href="index.html" class="logo" data-aos="fade-right">
+                    <div class="logo-icon">
+                        <span>E&E</span>
+                    </div>
+                    <span class="logo-text">ellos y ellas</span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="nav-desktop" data-aos="fade-down" data-aos-delay="100">
+                    <a href="index.html" class="nav-link">Inicio</a>
+                    <div class="nav-dropdown">
+                        <a href="#" class="nav-link active">Catálogo <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="#" data-category="facial">
+                                <i class="fas fa-spa"></i>
+                                <span>Cuidado Facial</span>
+                            </a>
+                            <a href="#" data-category="maquillaje">
+                                <i class="fas fa-palette"></i>
+                                <span>Maquillaje</span>
+                            </a>
+                            <a href="#" data-category="corporal">
+                                <i class="fas fa-heart"></i>
+                                <span>Cuidado Corporal</span>
+                            </a>
+                            <a href="#" data-category="cabello">
+                                <i class="fas fa-cut"></i>
+                                <span>Cabello</span>
+                            </a>
+                            <a href="#" data-category="unas">
+                                <i class="fas fa-hand-sparkles"></i>
+                                <span>Uñas</span>
+                            </a>
+                            <a href="#" data-category="herramientas">
+                                <i class="fas fa-tools"></i>
+                                <span>Herramientas</span>
+                            </a>
+                        </div>
+                    </div>
+                    <a href="index.html#about" class="nav-link">Nosotros</a>
+                    <a href="index.html#contact" class="nav-link">Contacto</a>
+                </nav>
+
+                <!-- Header Icons -->
+                <div class="header-icons" data-aos="fade-left" data-aos-delay="200">
+                    <div class="search-container">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Buscar productos..." id="searchInput">
+                            <div class="search-suggestions" id="searchSuggestions"></div>
+                        </div>
+                    </div>
+                    <a href="#" class="icon-btn" title="Mi Cuenta">
+                        <i class="fas fa-user-circle"></i>
+                    </a>
+                    <a href="#" class="icon-btn wishlist-btn" title="Lista de Deseos">
+                        <i class="fas fa-heart"></i>
+                        <span class="wishlist-count">0</span>
+                    </a>
+                    <a href="#" class="icon-btn cart-btn" title="Carrito de Compras">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div class="mobile-menu" id="mobileMenu">
+                <div class="mobile-menu-content">
+                    <a href="index.html" class="mobile-nav-link">Inicio</a>
+                    <a href="catalogo.html" class="mobile-nav-link">Catálogo</a>
+                    <a href="index.html#about" class="mobile-nav-link">Nosotros</a>
+                    <a href="index.html#contact" class="mobile-nav-link">Contacto</a>
+                    <div class="mobile-search">
+                        <input type="text" placeholder="Buscar productos...">
+                        <button><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Catalog Section -->
+    <section class="catalog-section" id="catalog">
+        <!-- Floating Elements -->
+        <div class="floating-elements">
+            <div class="floating-element">💄</div>
+            <div class="floating-element">✨</div>
+            <div class="floating-element">💅</div>
+            <div class="floating-element">🌸</div>
+        </div>
+    
+        <div class="container">
+            <!-- Catalog Header -->
+            <div class="catalog-header" data-aos="fade-up">
+                <h1 id="dynamicTitle">Catálogo de Productos</h1>
+                <p id="dynamicSubtitle">Descubre nuestra amplia selección de productos de belleza y cuidado personal</p>
+            </div>
+
+            <!-- Catalog Controls -->
+            <div class="catalog-controls" data-aos="fade-up" data-aos-delay="100">
+                <div class="search-section">
+                    <div class="catalog-search">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="catalogSearchInput" placeholder="Buscar productos...">
+                    </div>
+                </div>
+                
+                <div class="controls-section">
+                    <button class="filter-toggle-btn" id="filterToggleBtn">
+                        <i class="fas fa-filter"></i>
+                        Filtros
+                    </button>
+                    
+                    <select class="sort-select" id="sortSelect">
+                        <option value="featured">Destacados</option>
+                        <option value="newest">Más Nuevos</option>
+                        <option value="price-low">Precio: Menor a Mayor</option>
+                        <option value="price-high">Precio: Mayor a Menor</option>
+                        <option value="rating">Mejor Valorados</option>
+                    </select>
+                    
+                    <div class="view-toggle">
+                        <button class="view-btn active" data-view="grid">
+                            <i class="fas fa-th"></i>
+                        </button>
+                        <button class="view-btn" data-view="list">
+                            <i class="fas fa-list"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Catalog Content -->
+            <div class="catalog-content">
+                <!-- Filters Sidebar -->
+                <aside class="filters-sidebar" id="filtersSidebar" data-aos="fade-right" data-aos-delay="200">
+                    <div class="filters-header">
+                        <h3>Filtros</h3>
+                        <button class="clear-filters-btn" id="clearFiltersBtn">Limpiar</button>
+                    </div>
+
+                    <!-- Categories Filter -->
+                    <div class="filter-group">
+                        <h4>Categorías</h4>
+                        <div class="filter-options">
+                            <label class="filter-option">
+                                <input type="checkbox" name="category" value="facial">
+                                <span class="checkmark"></span>
+                                <span class="filter-text">Cuidado Facial <span class="count">(3)</span></span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox" name="category" value="maquillaje">
+                                <span class="checkmark"></span>
+                                <span class="filter-text">Maquillaje <span class="count">(3)</span></span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox" name="category" value="corporal">
+                                <span class="checkmark"></span>
+                                <span class="filter-text">Cuidado Corporal <span class="count">(2)</span></span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox" name="category" value="cabello">
+                                <span class="checkmark"></span>
+                                <span class="filter-text">Cabello <span class="count">(2)</span></span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox" name="category" value="unas">
+                                <span class="checkmark"></span>
+                                <span class="filter-text">Uñas <span class="count">(2)</span></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Price Filter -->
+                    <div class="filter-group">
+                        <h4>Precio</h4>
+                        <div class="filter-options">
+                            <label class="filter-option">
+                                <input type="checkbox" name="price" value="0-25000">
+                                <span class="checkmark"></span>
+                                <span class="filter-text">Menos de $25.000</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox" name="price" value="25000-50000">
+                                <span class="checkmark"></span>
+                                <span class="filter-text">$25.000 - $50.000</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox" name="price" value="50000-100000">
+                                <span class="checkmark"></span>
+                                <span class="filter-text">$50.000 - $100.000</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox" name="price" value="100000+">
+                                <span class="checkmark"></span>
+                                <span class="filter-text">Más de $100.000</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Availability Filter -->
+                    <div class="filter-group">
+                        <h4>Disponibilidad</h4>
+                        <div class="filter-options">
+                            <label class="filter-option">
+                                <input type="checkbox" name="availability" value="in-stock" checked>
+                                <span class="checkmark"></span>
+                                <span class="filter-text">En Stock</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox" name="availability" value="out-of-stock">
+                                <span class="checkmark"></span>
+                                <span class="filter-text">Agotado</span>
+                            </label>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Products Section -->
+                <div class="products-section" data-aos="fade-left" data-aos-delay="300">
+                    <div class="products-header">
+                        <p class="results-count" id="resultsCount">Cargando productos...</p>
+                    </div>
+
+                    <!-- Products Container -->
+                    <div class="products-container grid-view" id="productsContainer">
+                        <!-- Products will be loaded here by JavaScript -->
+                    </div>
+
+                    <!-- No Results -->
+                    <div class="no-results" id="noResults" style="display: none;">
+                        <div class="no-results-content">
+                            <i class="fas fa-search"></i>
+                            <h3>No se encontraron productos</h3>
+                            <p>Intenta ajustar tus filtros o buscar con otros términos</p>
+                            <button class="btn-primary" onclick="clearAllFilters()">Limpiar Filtros</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="footer-bg"></div>
+        <div class="container">
+            <div class="footer-content">
+                <!-- Brand Info -->
+                <div class="footer-section" data-aos="fade-up" data-aos-delay="100">
+                    <div class="footer-logo">
+                        <div class="logo-icon">
+                            <span>E&E</span>
+                        </div>
+                        <span class="logo-text">ellos y ellas</span>
+                    </div>
+                    <p>Tu marca de confianza en productos de belleza y cuidado personal. Calidad profesional para realzar tu belleza natural.</p>
+                    
+                    <div class="social-section">
+                        <h4>Síguenos</h4>
+                        <div class="social-icons">
+                            <a href="#" class="social-icon" title="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-icon" title="Facebook">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                            <a href="#" class="social-icon" title="YouTube">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="#" class="social-icon" title="Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-icon" title="LinkedIn">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-section" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="index.html#about">Sobre Nosotros</a></li>
+                        <li><a href="catalogo.html">Catálogo</a></li>
+                        <li><a href="index.html#contact">Contacto</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Preguntas Frecuentes</a></li>
+                    </ul>
+                </div>
+
+                <!-- Policies -->
+                <div class="footer-section" data-aos="fade-up" data-aos-delay="300">
+                    <h3>Políticas</h3>
+                    <ul>
+                        <li><a href="#">Política de Envíos</a></li>
+                        <li><a href="#">Devoluciones</a></li>
+                        <li><a href="#">Privacidad</a></li>
+                        <li><a href="#">Términos y Condiciones</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="footer-section" data-aos="fade-up" data-aos-delay="400">
+                    <h3>Contacto</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <p>info@ellosyellas.com</p>
+                                <small>ventas@ellosyellas.com</small>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <p>+57 300 123 4567</p>
+                                <small>WhatsApp disponible</small>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <p>Carrera 15 #93-47</p>
+                                <small>Bogotá, Colombia</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="schedule">
+                        <h4>Horarios de Atención</h4>
+                        <div class="schedule-item">
+                            <span>Lunes - Viernes:</span>
+                            <span>8:00 AM - 6:00 PM</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span>Sábados:</span>
+                            <span>9:00 AM - 4:00 PM</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span>Domingos:</span>
+                            <span>Cerrado</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 <span>ellos y ellas</span>. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <div class="whatsapp-float" data-aos="zoom-in" data-aos-delay="1000">
+        <div class="whatsapp-pulse"></div>
+        <button class="whatsapp-btn" onclick="openWhatsApp()" title="Contactar por WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </button>
+        <div class="whatsapp-tooltip">¡Chatea con nosotros!</div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Carrito de Compras</h3>
+            <button class="close-cart" onclick="toggleCart()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be loaded here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total: <strong id="cartTotal">$0</strong></span>
+            </div>
+            <button class="btn-primary cart-checkout">
+                <i class="fas fa-credit-card"></i>
+                Proceder al Pago
+            </button>
+        </div>
+    </div>
+
+    <!-- Cart Overlay -->
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+
+    <!-- Image Modal -->
+    <div class="image-modal" id="imageModal">
+        <div class="modal-backdrop" onclick="closeImageModal()"></div>
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeImageModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="image-carousel">
+                <button class="carousel-btn prev" onclick="prevImage()">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="carousel-images" id="carouselImages">
+                    <!-- Images will be loaded here -->
+                </div>
+                <button class="carousel-btn next" onclick="nextImage()">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            <div class="carousel-dots" id="carouselDots">
+                <!-- Dots will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="catalog.js"></script>
+    
+</body>
+</html>
