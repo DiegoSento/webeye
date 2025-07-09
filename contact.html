@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Productos - ellos y ellas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.js">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: 210 100% 40%;
+            --primary-foreground: 0 0% 100%;
+            --secondary: 210 40% 96%;
+            --secondary-foreground: 210 40% 10%;
+            --background: 210 50% 98%;
+            --foreground: 210 40% 10%;
+            --card: 0 0% 100%;
+            --card-foreground: 210 40% 10%;
+            --muted: 210 40% 96%;
+            --muted-foreground: 210 30% 40%;
+            --border: 210 20% 90%;
+            --primary-rgb: 38, 117, 255;
+            --shadow-primary: rgba(38, 117, 255, 0.2);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: hsl(var(--background));
+            color: hsl(var(--foreground));
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        .header {
+            background: hsl(var(--card));
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: hsl(var(--primary));
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, hsla(var(--primary), 0.1), hsla(var(--secondary), 0.3));
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1200&h=800&fit=crop') center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, hsl(var(--primary)), hsl(210, 80%, 60%));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: hsl(var(--muted-foreground));
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Filters */
+        .filters {
+            background: hsl(var(--card));
+            padding: 2rem 0;
+            border-bottom: 1px solid hsl(var(--border));
+        }
+
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            align-items: end;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .filter-group label {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: hsl(var(--foreground));
+        }
+
+        .filter-group select,
+        .filter-group input {
+            padding: 0.75rem;
+            border: 1px solid hsl(var(--border));
+            border-radius: 0.5rem;
+            background: hsl(var(--background));
+            color: hsl(var(--foreground));
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+        }
+
+        .filter-group select:focus,
+        .filter-group input:focus {
+            outline: none;
+            border-color: hsl(var(--primary));
+            box-shadow: 0 0 0 3px hsla(var(--primary), 0.1);
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            background: hsl(var(--primary));
+            color: hsl(var(--primary-foreground));
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 0.875rem;
+        }
+
+        .btn:hover {
+            background: hsl(210, 100%, 35%);
+            box-shadow: 0 4px 12px var(--shadow-primary);
+            transform: translateY(-1px);
+        }
+
+        /* Products Grid */
+        .products-section {
+            padding: 3rem 0;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        /* Product Card */
+        .product-card {
+            background: hsl(var(--card));
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        /* Carousel */
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            height: 250px;
+            background: hsl(var(--muted));
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease;
+            height: 100%;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+            cursor: zoom-in;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .carousel-slide:hover img {
+            transform: scale(1.05);
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.9);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 10;
+        }
+
+        .product-card:hover .carousel-nav {
+            opacity: 1;
+        }
+
+        .carousel-nav.prev {
+            left: 10px;
+        }
+
+        .carousel-nav.next {
+            right: 10px;
+        }
+
+        .carousel-nav:hover {
+            background: rgba(255,255,255,1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 5px;
+        }
+
+        .indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .indicator.active {
+            background: rgba(255,255,255,1);
+        }
+
+        /* Product Info */
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .product-category {
+            font-size: 0.75rem;
+            color: hsl(var(--primary));
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .product-plu {
+            font-size: 0.75rem;
+            color: hsl(var(--muted-foreground));
+            background: hsl(var(--muted));
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+        }
+
+        .product-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: hsl(var(--foreground));
+        }
+
+        .product-description {
+            color: hsl(var(--muted-foreground));
+            font-size: 0.875rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .stars {
+            display: flex;
+            gap: 2px;
+        }
+
+        .star {
+            color: #fbbf24;
+            font-size: 0.875rem;
+        }
+
+        .rating-text {
+            font-size: 0.75rem;
+            color: hsl(var(--muted-foreground));
+        }
+
+        .product-price {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .current-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: hsl(var(--primary));
+        }
+
+        .original-price {
+            font-size: 1rem;
+            color: hsl(var(--muted-foreground));
+            text-decoration: line-through;
+        }
+
+        .discount-badge {
+            background: #ef4444;
+            color: white;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-weight: 500;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-secondary {
+            background: hsl(var(--secondary));
+            color: hsl(var(--secondary-foreground));
+            border: 1px solid hsl(var(--border));
+        }
+
+        .btn-secondary:hover {
+            background: hsl(var(--muted));
+        }
+
+        .btn-icon {
+            padding: 0.75rem;
+            min-width: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Badges */
+        .badges {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            z-index: 5;
+        }
+
+        .badge {
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .badge.new {
+            background: #10b981;
+            color: white;
+        }
+
+        .badge.discount {
+            background: #ef4444;
+            color: white;
+        }
+
+        /* Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Floating Buttons */
+        .floating-buttons {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .floating-btn {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            color: white;
+            font-size: 1.25rem;
+        }
+
+        .floating-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.3);
+        }
+
+        .whatsapp-btn {
+            background: #25d366;
+        }
+
+        .scroll-top-btn {
+            background: hsl(var(--primary));
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .filters-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: 1rem;
+            }
+
+            .floating-buttons {
+                bottom: 1rem;
+                right: 1rem;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid hsl(var(--muted));
+            border-top: 4px solid hsl(var(--primary));
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">ellos y ellas</div>
+                <nav style="display: flex; align-items: center; gap: 2rem;">
+                    <a href="index.html" style="color: hsl(var(--muted-foreground)); text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Inicio</a>
+                    <a href="#" style="color: hsl(var(--primary)); text-decoration: none; font-weight: 500;">Catálogo</a>
+                    <a href="#contact" style="color: hsl(var(--muted-foreground)); text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Contacto</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Catálogo de Productos</h1>
+                <p>Descubre nuestra colección completa de productos de belleza premium</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filters -->
+    <section class="filters">
+        <div class="container">
+            <div class="filters-grid">
+                <div class="filter-group">
+                    <label for="category">Categoría</label>
+                    <select id="category">
+                        <option value="">Todas las categorías</option>
+                        <option value="cuidado-facial">Cuidado Facial</option>
+                        <option value="maquillaje">Maquillaje</option>
+                        <option value="cuidado-corporal">Cuidado Corporal</option>
+                        <option value="cabello">Cabello</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="price-range">Precio máximo</label>
+                    <input type="range" id="price-range" min="0" max="100" value="100">
+                    <span id="price-value">$100</span>
+                </div>
+                <div class="filter-group">
+                    <label for="search">Buscar</label>
+                    <input type="text" id="search" placeholder="Buscar productos...">
+                </div>
+                <div class="filter-group">
+                    <button class="btn" onclick="clearFilters()">Limpiar filtros</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section">
+        <div class="container">
+            <div id="products-container">
+                <div class="loading">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Image Modal -->
+    <div class="modal" id="image-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <img id="modal-image" src="" alt="">
+        </div>
+    </div>
+
+    <!-- Floating Buttons -->
+    <div class="floating-buttons">
+        <button class="floating-btn whatsapp-btn" onclick="openWhatsApp()" title="Contactar por WhatsApp">
+            <span>💬</span>
+        </button>
+        <button class="floating-btn scroll-top-btn" onclick="scrollToTop()" title="Ir al inicio">
+            <span>↑</span>
+        </button>
+    </div>
+
+    <script>
+        // Products data
+        const allProducts = [
+            {
+                id: 1,
+                name: "Serum Vitamina C Premium",
+                description: "Serum antioxidante con vitamina C pura para una piel radiante y luminosa. Ideal para uso diario.",
+                plu: "BEL-001",
+                price: 45.99,
+                originalPrice: 59.99,
+                category: "cuidado-facial",
+                rating: 4.8,
+                reviews: 324,
+                isNew: true,
+                discount: 23,
+                images: [
+                    "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=400&h=400&fit=crop",
+                    "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=400&fit=crop",
+                    "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=400&h=400&fit=crop"
+                ]
+            },
+            {
+                id: 2,
+                name: "Base de Maquillaje HD",
+                description: "Base de cobertura completa con acabado natural que dura todo el día. Disponible en 15 tonos.",
+                plu: "MAQ-002",
+                price: 32.99,
+                originalPrice: 42.99,
+                category: "maquillaje",
+                rating: 4.6,
+                reviews: 198,
+                isNew: false,
+                discount: 23,
+                images: [
+                    "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=400&h=400&fit=crop",
+                    "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
+                    "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=400&h=400&fit=crop"
+                ]
+            },
+            {
+                id: 3,
+                name: "Crema Hidratante Nocturna",
+                description: "Crema nutritiva con ácido hialurónico para regeneración nocturna. Resultados visibles en 7 días.",
+                plu: "CUI-003",
+                price: 28.99,
+                originalPrice: 35.99,
+                category: "cuidado-facial",
+                rating: 4.9,
+                reviews: 456,
+                isNew: false,
+                discount: 19,
+                images: [
+                    "https://images.unsplash.com/photo-1570194065650-d99c79bdbc31?w=400&h=400&fit=crop",
+                    "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=400&h=400&fit=crop"
+                ]
+            },
+            {
+                id: 4,
+                name: "Paleta de Sombras Sunset",
+                description: "Paleta de 12 sombras con tonos cálidos y pigmentación intensa. Perfecta para looks de día y noche.",
+                plu: "MAQ-004",
+                price: 24.99,
+                originalPrice: 34.99,
+                category: "maquillaje",
+                rating: 4.7,
+                reviews: 287,
+                isNew: true,
+                discount: 29,
+                images: [
+                    "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=400&h=400&fit=crop",
+                    "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400&h=400&fit=crop",
+                    "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=400&h=400&fit=crop"
+                ]
+            },
+            {
+                id: 5,
+                name: "Aceite Corporal Nutritivo",
+                description: "Aceite natural con argan y jojoba para hidratación profunda. Absorción rápida, sin residuos grasos.",
+                plu: "COR-005",
+                price: 18.99,
+                originalPrice: 24.99,
+                category: "cuidado-corporal",
+                rating: 4.5,
+                reviews: 142,
+                isNew: false,
+                discount: 24,
+                images: [
+                    "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=400&h=400&fit=crop",
+                    "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=400&h=400&fit=crop"
+                ]
+            },
+            {
+                id: 6,
+                name: "Labial Líquido Mate",
+                description: "Labial de larga duración con acabado mate y colores intensos. Resistente al agua hasta 8 horas.",
+                plu: "MAQ-006",
+                price: 15.99,
+                originalPrice: 19.99,
+                category: "maquillaje",
+                rating: 4.4,
+                reviews: 389,
+                isNew: false,
+                discount: 20,
+                images: [
+                    "https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=400&h=400&fit=crop",
+                    "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=400&h=400&fit=crop",
+                    "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=400&h=400&fit=crop"
+                ]
+            },
+            {
+                id: 7,
+                name: "Shampoo Reparador",
+                description: "Shampoo con keratina y aceites naturales para cabello dañado. Restaura y fortalece desde la primera aplicación.",
+                plu: "CAB-007",
+                price: 22.99,
+                originalPrice: 29.99,
+                category: "cabello",
+                rating: 4.6,
+                reviews: 234,
+                isNew: true,
+                discount: 23,
+                images: [
+                    "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=400&h=400&fit=crop",
+                    "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=400&fit=crop"
+                ]
+            },
+            {
+                id: 8,
+                name: "Mascarilla Facial Purificante",
+                description: "Mascarilla con arcilla verde y carbón activado. Limpia profundamente los poros y controla el exceso de grasa.",
+                plu: "CUI-008",
+                price: 19.99,
+                originalPrice: 25.99,
+                category: "cuidado-facial",
+                rating: 4.7,
+                reviews: 167,
+                isNew: false,
+                discount: 23,
+                images: [
+                    "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=400&h=400&fit=crop",
+                    "https://images.unsplash.com/photo-1570194065650-d99c79bdbc31?w=400&h=400&fit=crop"
+                ]
+            }
+        ];
+
+        let filteredProducts = [...allProducts];
+        let currentFilters = {
+            category: '',
+            maxPrice: 100,
+            search: ''
+        };
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            setupEventListeners();
+            displayProducts(allProducts);
+        });
+
+        function setupEventListeners() {
+            // Filter event listeners
+            document.getElementById('category').addEventListener('change', filterProducts);
+            document.getElementById('price-range').addEventListener('input', updatePriceFilter);
+            document.getElementById('search').addEventListener('input', filterProducts);
+
+            // Close modal when clicking outside
+            document.getElementById('image-modal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeModal();
+                }
+            });
+        }
+
+        function updatePriceFilter() {
+            const priceRange = document.getElementById('price-range');
+            const priceValue = document.getElementById('price-value');
+            priceValue.textContent = `$${priceRange.value}`;
+            currentFilters.maxPrice = parseFloat(priceRange.value);
+            filterProducts();
+        }
+
+        function filterProducts() {
+            const category = document.getElementById('category').value;
+            const search = document.getElementById('search').value.toLowerCase();
+            
+            currentFilters.category = category;
+            currentFilters.search = search;
+
+            filteredProducts = allProducts.filter(product => {
+                const matchesCategory = !category || product.category === category;
+                const matchesPrice = product.price <= currentFilters.maxPrice;
+                const matchesSearch = !search || 
+                    product.name.toLowerCase().includes(search) ||
+                    product.description.toLowerCase().includes(search) ||
+                    product.plu.toLowerCase().includes(search);
+
+                return matchesCategory && matchesPrice && matchesSearch;
+            });
+
+            displayProducts(filteredProducts);
+        }
+
+        function clearFilters() {
+            document.getElementById('category').value = '';
+            document.getElementById('price-range').value = '100';
+            document.getElementById('price-value').textContent = '$100';
+            document.getElementById('search').value = '';
+            
+            currentFilters = {
+                category: '',
+                maxPrice: 100,
+                search: ''
+            };
+
+            displayProducts(allProducts);
+        }
+
+        function displayProducts(products) {
+            const container = document.getElementById('products-container');
+            
+            if (products.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 3rem; color: hsl(var(--muted-foreground));">
+                        <h3>No se encontraron productos</h3>
+                        <p>Intenta ajustar los filtros de búsqueda</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const productsGrid = `
+                <div class="products-grid">
+                    ${products.map((product, index) => createProductCard(product, index)).join('')}
+                </div>
+            `;
+
+            container.innerHTML = productsGrid;
+        }
+
+        function createProductCard(product, index) {
+            const discount = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
+            const stars = '★'.repeat(Math.floor(product.rating)) + '☆'.repeat(5 - Math.floor(product.rating));
+
+            return `
+                <div class="product-card" style="animation-delay: ${index * 100}ms">
+                    <div class="carousel-container">
+                        <div class="badges">
+                            ${product.isNew ? '<span class="badge new">Nuevo</span>' : ''}
+                            ${discount > 0 ? `<span class="badge discount">-${discount}%</span>` : ''}
+                        </div>
+                        
+                        <div class="carousel-track" id="carousel-${product.id}">
+                            ${product.images.map((image, imgIndex) => `
+                                <div class="carousel-slide" onclick="openImageModal('${image}')">
+                                    <img src="${image}" alt="${product.name}" loading="lazy">
+                                </div>
+                            `).join('')}
+                        </div>
+                        
+                        ${product.images.length > 1 ? `
+                            <button class="carousel-nav prev" onclick="prevSlide(${product.id})">&lt;</button>
+                            <button class="carousel-nav next" onclick="nextSlide(${product.id})">&gt;</button>
+                            
+                            <div class="carousel-indicators">
+                                ${product.images.map((_, imgIndex) => `
+                                    <div class="indicator ${imgIndex === 0 ? 'active' : ''}" onclick="goToSlide(${product.id}, ${imgIndex})"></div>
+                                `).join('')}
+                            </div>
+                        ` : ''}
+                    </div>
+                    
+                    <div class="product-info">
+                        <div class="product-header">
+                            <span class="product-category">${getCategoryName(product.category)}</span>
+                            <span class="product-plu">PLU: ${product.plu}</span>
+                        </div>
+                        
+                        <h3 class="product-name">${product.name}</h3>
+                        <p class="product-description">${product.description}</p>
+                        
+                        <div class="product-rating">
+                            <div class="stars">
+                                ${stars.split('').map(star => `<span class="star">${star}</span>`).join('')}
+                            </div>
+                            <span class="rating-text">${product.rating} (${product.reviews} reseñas)</span>
+                        </div>
+                        
+                        <div class="product-price">
+                            <span class="current-price">$${product.price}</span>
+                            ${product.originalPrice > product.price ? `<span class="original-price">$${product.originalPrice}</span>` : ''}
+                            ${discount > 0 ? `<span class="discount-badge">-${discount}%</span>` : ''}
+                        </div>
+                        
+                        <div class="product-actions">
+                            <button class="btn" style="flex: 1;" onclick="addToCart(${product.id})">
+                                Agregar al carrito
+                            </button>
+                            <button class="btn btn-secondary btn-icon" onclick="toggleFavorite(${product.id})" title="Favorito">
+                                ♡
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function getCategoryName(category) {
+            const categories = {
+                'cuidado-facial': 'Cuidado Facial',
+                'maquillaje': 'Maquillaje',
+                'cuidado-corporal': 'Cuidado Corporal',
+                'cabello': 'Cabello'
+            };
+            return categories[category] || category;
+        }
+
+        // Carousel functionality
+        let currentSlides = {};
+
+        function nextSlide(productId) {
+            const track = document.getElementById(`carousel-${productId}`);
+            const slides = track.children;
+            const currentIndex = currentSlides[productId] || 0;
+            const nextIndex = (currentIndex + 1) % slides.length;
+            
+            updateCarousel(productId, nextIndex);
+        }
+
+        function prevSlide(productId) {
+            const track = document.getElementById(`carousel-${productId}`);
+            const slides = track.children;
+            const currentIndex = currentSlides[productId] || 0;
+            const prevIndex = currentIndex === 0 ? slides.length - 1 : currentIndex - 1;
+            
+            updateCarousel(productId, prevIndex);
+        }
+
+        function goToSlide(productId, index) {
+            updateCarousel(productId, index);
+        }
+
+        function updateCarousel(productId, index) {
+            const track = document.getElementById(`carousel-${productId}`);
+            const indicators = track.parentElement.querySelectorAll('.indicator');
+            
+            currentSlides[productId] = index;
+            track.style.transform = `translateX(-${index * 100}%)`;
+            
+            indicators.forEach((indicator, i) => {
+                indicator.classList.toggle('active', i === index);
+            });
+        }
+
+        // Modal functionality
+        function openImageModal(imageSrc) {
+            const modal = document.getElementById('image-modal');
+            const modalImage = document.getElementById('modal-image');
+            
+            modalImage.src = imageSrc;
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('image-modal');
+            modal.classList.remove('active');
+        }
+
+        // Product actions
+        function addToCart(productId) {
+            const product = allProducts.find(p => p.id === productId);
+            alert(`¡${product.name} agregado al carrito!`);
+        }
+
+        function toggleFavorite(productId) {
+            const product = allProducts.find(p => p.id === productId);
+            alert(`${product.name} agregado a favoritos`);
+        }
+
+        // Floating buttons
+        function openWhatsApp() {
+            window.open('https://wa.me/573001234567?text=Hola,%20me%20interesa%20información%20sobre%20sus%20productos', '_blank');
+        }
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Smooth scrolling and lazy loading
+        document.addEventListener('scroll', function() {
+            const scrollBtn = document.querySelector('.scroll-top-btn');
+            if (window.scrollY > 500) {
+                scrollBtn.style.opacity = '1';
+            } else {
+                scrollBtn.style.opacity = '0.7';
+            }
+        });
+    </script>
+
+    <!-- Footer -->
+    <footer style="background: hsl(var(--card)); border-top: 1px solid hsl(var(--border)); padding: 3rem 0 1.5rem; margin-top: 4rem;">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+                <div>
+                    <h3 style="font-size: 1.5rem; font-weight: bold; color: hsl(var(--primary)); margin-bottom: 1rem; font-family: 'Playfair Display', serif;">ellos y ellas</h3>
+                    <p style="color: hsl(var(--muted-foreground)); line-height: 1.6; margin-bottom: 1.5rem;">Tu destino de confianza para productos de belleza premium. Descubre nuestra cuidadosa selección de cosméticos y tratamientos de las mejores marcas.</p>
+                    <div style="display: flex; gap: 1rem;">
+                        <a href="#" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: hsl(var(--primary)); color: white; border-radius: 50%; text-decoration: none; transition: all 0.3s ease;">f</a>
+                        <a href="#" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: hsl(var(--primary)); color: white; border-radius: 50%; text-decoration: none; transition: all 0.3s ease;">📷</a>
+                        <a href="#" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: hsl(var(--primary)); color: white; border-radius: 50%; text-decoration: none; transition: all 0.3s ease;">🐦</a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 style="font-weight: 600; margin-bottom: 1rem; color: hsl(var(--foreground));">Enlaces Rápidos</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 0.5rem;"><a href="index.html" style="color: hsl(var(--muted-foreground)); text-decoration: none; transition: color 0.3s ease;">Inicio</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: hsl(var(--muted-foreground)); text-decoration: none; transition: color 0.3s ease;">Catálogo</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#about" style="color: hsl(var(--muted-foreground)); text-decoration: none; transition: color 0.3s ease;">Sobre Nosotros</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#contact" style="color: hsl(var(--muted-foreground)); text-decoration: none; transition: color 0.3s ease;">Contacto</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 style="font-weight: 600; margin-bottom: 1rem; color: hsl(var(--foreground));">Categorías</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: hsl(var(--muted-foreground)); text-decoration: none; transition: color 0.3s ease;">Cuidado Facial</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: hsl(var(--muted-foreground)); text-decoration: none; transition: color 0.3s ease;">Maquillaje</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: hsl(var(--muted-foreground)); text-decoration: none; transition: color 0.3s ease;">Cuidado Corporal</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: hsl(var(--muted-foreground)); text-decoration: none; transition: color 0.3s ease;">Cabello</a></li>
+                    </ul>
+                </div>
+                
+                <div id="contact">
+                    <h4 style="font-weight: 600; margin-bottom: 1rem; color: hsl(var(--foreground));">Contacto</h4>
+                    <div style="color: hsl(var(--muted-foreground)); line-height: 1.6;">
+                        <p style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><span>📧</span> info@ellosyellas.com</p>
+                        <p style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><span>📱</span> +1 (555) 123-4567</p>
+                        <p style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><span>📍</span> 123 Beauty Street, Ciudad</p>
+                        <p style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;"><span>🕐</span> Lun-Vie: 9AM-6PM</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="border-top: 1px solid hsl(var(--border)); padding-top: 1.5rem; text-align: center;">
+                <p style="color: hsl(var(--muted-foreground)); font-size: 0.875rem;">
+                    © 2024 ellos y ellas. Todos los derechos reservados.
+                </p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
